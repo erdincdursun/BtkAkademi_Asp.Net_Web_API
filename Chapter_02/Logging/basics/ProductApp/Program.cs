@@ -7,14 +7,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Logging.ClearProviders(); //Default olarak bunun kaydý var demek.IoC kayýt yapmak durumunda kalmýyoruz.
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+
+
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+
 
 app.UseHttpsRedirection();
 

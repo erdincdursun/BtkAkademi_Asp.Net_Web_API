@@ -4,7 +4,7 @@ using ProductApp.Models;
 
 namespace ProductApp.Controllers
 {
-    [Route("api/[products]")]
+    [Route("api/products")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
@@ -26,7 +26,15 @@ namespace ProductApp.Controllers
 
 
             };
+            _logger.LogInformation("GetAllProducts action has been called.");
             return Ok(products);
+        }
+        [HttpPost]
+        public IActionResult GetAllProducts([FromBody]Product product)
+        {
+           
+            _logger.LogWarning("Product has been created.");
+            return StatusCode(201); //Created
         }
 
     }
